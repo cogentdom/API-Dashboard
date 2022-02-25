@@ -2,15 +2,19 @@ import streamlit as st
 import pandas as pd
 import requests
 import json
+import os
 
 st.set_page_config(layout='wide')
-url = 'https://api-stock-getter-rghwdwjikq-uc.a.run.app/price/'
+url = 'https://devgroup.hclapigeex.com/data'
 ticker_list = {"HCL Technologies":"HCLTECH.NS", "Apple":"AAPL", "Google":"GOOG", "Microsoft":"MSFT", "Tesla":"TSLA", "Bitcoin":"BTC-USD", "Ethereum":"ETH-USD", "Dogecoin":"DOGE-USD"}
 stocks = ("HCL Technologies", "Apple", "Google", "Microsoft", "Tesla", "Bitcoin", "Ethereum", "Dogecoin")
 selected_stock = st.selectbox("Select an entity to retrieve", stocks)
-url = f'{url}{ticker_list[selected_stock]}'
-
-response = requests.get(url)
+url = f'{url}/{ticker_list[selected_stock]}'
+print(url)
+api_key = os.environ.get('DATA_RUNNER_API_KEY')
+headers = {'apikey': api_key}
+response = requests.get(url, headers=headers)
+print(response)
 data = json.loads(response.text)
 df = pd.DataFrame(data)
 df['Date'] = pd.to_datetime(df.Date, unit='ms')
