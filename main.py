@@ -6,8 +6,12 @@ import os
 
 st.set_page_config(layout='wide')
 url = 'https://devgroup.hclapigeex.com/data'
-ticker_list = {"HCL Technologies":"HCLTECH.NS", "Apple":"AAPL", "Google":"GOOG", "Microsoft":"MSFT", "Tesla":"TSLA", "Bitcoin":"BTC-USD", "Ethereum":"ETH-USD", "Dogecoin":"DOGE-USD"}
-stocks = ("HCL Technologies", "Apple", "Google", "Microsoft", "Tesla", "Bitcoin", "Ethereum", "Dogecoin")
+ticker_list = {"HCL Technologies":"HCLTECH.NS", "Apple":"AAPL", "Google":"GOOG", "Microsoft":"MSFT", 
+                "Tesla":"TSLA", "Bitcoin":"BTC-USD", "Ethereum":"ETH-USD", "Dogecoin":"DOGE-USD", 
+                "Cardano":"ADA-USD", "Bitcoin Cash":"BCH-USD", "Filecoin":"FIL-USD", "Solana":"SOL-USD",
+                "Storj":"STORJ-USD", "Polkadot":"DOT-USD"}
+stocks = ("HCL Technologies", "Apple", "Google", "Microsoft", "Tesla", "Bitcoin", "Ethereum", "Dogecoin", 
+            "Cardano", "Bitcoin Cash", "Filecoin", "Solana", "Storj", "Polkadot")
 selected_stock = st.selectbox("Select an entity to retrieve", stocks)
 url = f'{url}/{ticker_list[selected_stock]}'
 print(url)
